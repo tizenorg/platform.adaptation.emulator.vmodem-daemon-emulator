@@ -1,8 +1,8 @@
-#git:slp/pkgs/v/vmodem-daemon-emulator
+#git:sdk/vmodem-daemon-emulator
 Name: vmodemd-emul
-Version: 0.2.52
+Version: 0.2.53
 Release: 1
-Summary: Modem Emulator
+Summary: Virtual Modem
 Group: System/ModemEmulator
 License: GNU
 Source0: %{name}-%{version}.tar.gz
@@ -12,7 +12,7 @@ BuildRequires: pkgconfig(vconf)
 BuildRequires: pkgconfig(sqlite3)
 
 %description
-Virtual modem emulator
+Virtual modem for emulator
 
 %prep
 %setup -q
@@ -60,5 +60,4 @@ rm -f build
 /usr/lib/systemd/system/emulator.target.wants/vmodem-x86.service
 /usr/lib/systemd/system/vmodem-x86.service
 /usr/share/license/%{name}
-
 
