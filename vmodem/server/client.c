@@ -34,7 +34,7 @@
 #include "phoneprotocol4gsm.h"
 #include "vgsm_phone.h"
 #include "vgsm_ss.h"
-// #include <mzgsmsat.h> 
+// #include <mzgsmsat.h>
 // #include <mzgsmsound.h>
 #include "vgsm_sms.h"
 #include "vgsm_gprs.h"
@@ -236,7 +236,7 @@ static void do_restore_ei(PhoneServer* ps, TClientInfo * ci, LXT_MESSAGE * packe
 	    data[3] = callList->CallInfo[i].stat;
 
 	    memset(&data[4], 0, MAX_GSM_DIALED_DIGITS_NUMBER);
-	    memcpy(&data[4], callList->CallInfo[i].number, callList->CallInfo[i].num_len);  
+	    memcpy(&data[4], callList->CallInfo[i].number, callList->CallInfo[i].num_len);
 	    MOpacket.data = data;
 	    MOpacket.group  = GSM_CALL;
 	    MOpacket.action = GSM_CALL_MAKE_REQ;
@@ -531,7 +531,7 @@ static void do_power(PhoneServer* ps, TClientInfo * ci, LXT_MESSAGE * packet)
 
     switch (action)
     {
-	case GSM_POWER_MODEM_ON_REQ: 
+	case GSM_POWER_MODEM_ON_REQ:
 	    oem_rx_power_up_exec();
 	    break;
 	case GSM_POWER_BATTERY_STATUS_NOTI:
