@@ -1,30 +1,29 @@
 /*
  *  telephony-emulator
  *
- * Copyright (c) 2000 - 2011 Samsung Electronics Co., Ltd. All rights reserved.
+ * Copyright (c) 2000 - 2013 Samsung Electronics Co., Ltd. All rights reserved.
  *
- * Contact: 
+ * Contact:
  * Sooyoung Ha <yoosah.ha@samsung.com>
- * Sungmin Ha <sungmin82.ha@samsung.com>
  * YeongKyoon Lee <yeongkyoon.lee@samsung.com>
- * 
- * This library is free software; you can redistribute it and/or modify it under
- * the terms of the GNU Lesser General Public License as published by the
- * Free Software Foundation; either version 2.1 of the License, or (at your option)
- * any later version.
- * 
- * This library is distributed in the hope that it will be useful, but WITHOUT ANY
- * WARRANTY; without even the implied warranty of MERCHANTABILITY or
- * FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
- * License for more details.
  *
- * You should have received a copy of the GNU Lesser General Public License
- * along with this library; if not, write to the Free Software Foundation, Inc., 51
- * Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  * Contributors:
  * - S-Core Co., Ltd
- * 
+ *
  */
 
 #ifndef _vgsm_phone_h_
@@ -74,13 +73,13 @@
 #define FUNC_SINGLEDB_IND						0x02
 
 /* --------------------------------------------------------------------------
-   GSM_CLIENT : 
-   --------------------------------------------------------------------------*/
+GSM_CLIENT : 
+--------------------------------------------------------------------------*/
 #define GSM_CLIENT_RELEASE_NOTI		0x01
 #define GSM_CLIENT_RELEASE_NOTI_ACK		0x02
 /* --------------------------------------------------------------------------
-   GSM_CALL : Call Control Functions
-   --------------------------------------------------------------------------*/
+GSM_CALL : Call Control Functions
+--------------------------------------------------------------------------*/
 
 /*
  * Length : Caller ID length (VAR)
@@ -159,8 +158,8 @@
 #define GSM_CALL_TO_DEVICE_CFRM               0x2D
 
 /* --------------------------------------------------------------------------
-   GSM_CALL : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_CALL : Notification or Response
+--------------------------------------------------------------------------*/
 
 #define GSM_CALL_ID                           0x20
 
@@ -305,8 +304,8 @@
 #define GSM_CALL_ALERT_IND				0x62 
 
 /* --------------------------------------------------------------------------
-   GSM_NETWORK : Network Functions
-   --------------------------------------------------------------------------*/
+GSM_NETWORK : Network Functions
+--------------------------------------------------------------------------*/
 
 /*
  * Length : Zero
@@ -389,8 +388,8 @@
 #define GSM_NETWORK_GET_POWERONATTACH_REQ	0x3F
 // EMTRACE_I878, civily 2005.10.13 ]
 /* --------------------------------------------------------------------------
-   GSM_NETWORK : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_NETWORK : Notification or Response
+--------------------------------------------------------------------------*/
 
 /*
  * Length : 1 + 1 + VAR(Network Name)
@@ -473,8 +472,8 @@
 #define GSM_NETWORK_CURRENT_NITZ_INFO          0x3F
 
 /* --------------------------------------------------------------------------
-   GSM_SUPS : Sups Service TX function
-   --------------------------------------------------------------------------*/
+GSM_SUPS : Sups Service TX function
+--------------------------------------------------------------------------*/
 /*
  * Length : MMI String length
  * Data   : 
@@ -615,8 +614,8 @@
 #define GSM_SUPS_GET_PPU_REQ                  0x57
 
 /* --------------------------------------------------------------------------
-   GSM_SUPS : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_SUPS : Notification or Response
+--------------------------------------------------------------------------*/
 // sunnyfan, 2006.01.19 [
 #define GSM_SUPS_NETWORK_POPUP_MESSAGE		0x40
 // sunnyfan ]
@@ -786,8 +785,8 @@
 #define GSM_SUPS_USSD_SET       0xe7 
 
 /* --------------------------------------------------------------------------
-   GSM_MISC : misc Functions
-   --------------------------------------------------------------------------*/
+GSM_MISC : misc Functions
+--------------------------------------------------------------------------*/
 
 /*
  * Length : 2
@@ -834,8 +833,8 @@
 #define GSM_MISC_INTERNAL_MODE_REQ            0x67
 
 /* --------------------------------------------------------------------------
-   GSM_DISPLAY : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_DISPLAY : Notification or Response
+--------------------------------------------------------------------------*/
 
 /*
  * Length : (1) + VAR
@@ -892,16 +891,16 @@
 // sunnyfan ]
 
 /* --------------------------------------------------------------------------
-   GSM_DISPLAY : Functions for Indicator
-   --------------------------------------------------------------------------*/
+GSM_DISPLAY : Functions for Indicator
+--------------------------------------------------------------------------*/
 
 /*
  * Declare Display Functions constant.
  */
 
 /* --------------------------------------------------------------------------
-   GSM_DISPLAY : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_DISPLAY : Notification or Response
+--------------------------------------------------------------------------*/
 
 /*
  * Length : 2bytes
@@ -912,8 +911,8 @@
 #define GSM_DISPLAY_INDICATOR_NOTI            0x71
 
 /* --------------------------------------------------------------------------
-   GSM_SIM : SIM card Functions
-   --------------------------------------------------------------------------*/
+GSM_SIM : SIM card Functions
+--------------------------------------------------------------------------*/
 
 /*
  * Length : VAR
@@ -1031,7 +1030,7 @@
 #define GSM_SIM_PROTECT_SIM_DB                          0xc0
 #define GSM_SIM_PUKSET_REQ                       0xc1 //set
 #define GSM_SIM_PUK2SET_REQ                       0xc2 //set
-   
+
 #define	GSM_SIMINFO_REQ							0xD1	//get SIMINFO
 #define	GSM_SIMDATA_REQ							0xD2	//get SIMDATA
 #define	GSM_SIMINFO_RES							0xD3	//get SIMINFO
@@ -1071,12 +1070,12 @@
 
 
 
-    
-    
-     
+
+
+
 /* --------------------------------------------------------------------------
-   GSM_DATA : Data Service Functions
-   --------------------------------------------------------------------------*/
+GSM_DATA : Data Service Functions
+--------------------------------------------------------------------------*/
 /*
  * Length : VAR
  * Data   :
@@ -1116,8 +1115,8 @@
 #define GSM_DATA_HANGUP_REQ                   0xA6
 
 /* --------------------------------------------------------------------------
-   GSM_DATA : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_DATA : Notification or Response
+--------------------------------------------------------------------------*/
 /*
  * Length : 1
  * - State        (1byte) see mzgsmnet.h
@@ -1196,8 +1195,8 @@
 #define GSM_DATA_GPRS_INIT_REQ	0xAF
 
 /* --------------------------------------------------------------------------
-   GSM_EXT : Gong Jung mode
-   --------------------------------------------------------------------------*/
+GSM_EXT : Gong Jung mode
+--------------------------------------------------------------------------*/
 /*
  * Length : IMEI length
  * Data   : 
@@ -1240,8 +1239,8 @@
  */
 #define GSM_EXT_SET_INTERNAL_STATE_REQ        0xB6
 /* --------------------------------------------------------------------------
-   GSM_EXT : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_EXT : Notification or Response
+--------------------------------------------------------------------------*/
 /*
  * Length : 1
  * Data   : 
@@ -1299,8 +1298,8 @@
 
 
 /* --------------------------------------------------------------------------
-   GSM_SMS : SMS Functions
-   --------------------------------------------------------------------------*/
+GSM_SMS : SMS Functions
+--------------------------------------------------------------------------*/
 #define GSM_SMS_SEND_MSG_REQ					0x01
 #define GSM_SMS_READ_MSG_REQ					0x02
 #define GSM_SMS_SAVE_MSG_REQ					0x03
@@ -1321,10 +1320,10 @@
 #define GSM_SMS_SET_BLK_LIST_REQ         0x11
 // by luxmea ]
 #define GSM_SMS_INCOMING_CB_MSG_REQ		0x12
-  
+
 /* --------------------------------------------------------------------------
-   GSM_SMS : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_SMS : Notification or Response
+--------------------------------------------------------------------------*/
 #define GSM_SMS_INCOMING_MSG_NOTI			0x01
 #define GSM_SMS_READ_MSG_RES					0x02
 #define GSM_SMS_RECEIVE_ACK_NOTI				0x03
@@ -1342,8 +1341,8 @@
 
 
 /* --------------------------------------------------------------------------
-   GSM_SAT : SAT functions
-   --------------------------------------------------------------------------*/
+GSM_SAT : SAT functions
+--------------------------------------------------------------------------*/
 #define GSM_SAT_PROFILE_DOWNLOAD_SET               0x01
 #define GSM_SAT_ENVELOPE_COMMAND_REQ               0x02
 #define GSM_SAT_PROACTIVE_COMMAND_GET              0x03
@@ -1365,8 +1364,8 @@
 
 
 /* --------------------------------------------------------------------------
-   GSM_SAT : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_SAT : Notification or Response
+--------------------------------------------------------------------------*/
 #define GSM_SAT_PROACTIVE_COMMAND_INDICATION       0x01
 #define GSM_SAT_PROACTIVE_COMMAND_RESPONSE         0x02
 #define GSM_SAT_ENVELOPE_COMMAND_NOTIFICATION      0x03
@@ -1380,8 +1379,8 @@
 
 
 /* --------------------------------------------------------------------------
-   GSM_SOUND : Sound functions
-   --------------------------------------------------------------------------*/
+GSM_SOUND : Sound functions
+--------------------------------------------------------------------------*/
 
 #define GSM_SND_KEY_TONE_REQ						0x01
 #define GSM_SND_NOTI_TONE_REQ					0x02
@@ -1402,8 +1401,8 @@
 #define GSM_SND_SET_GAIN_CTRL_REQ				0x11
 
 /* --------------------------------------------------------------------------
-   GSM_SOUND : Notification or Response
-   --------------------------------------------------------------------------*/
+GSM_SOUND : Notification or Response
+--------------------------------------------------------------------------*/
 #define GSM_SND_SPKR_VOLUME_CTRL_RES				0x01
 #define GSM_SND_MIC_GAIN_CTRL_RES				0x02
 #define GSM_SND_SET_MIC_MUTE_CTRL_RES			0x03
@@ -1412,8 +1411,8 @@
 #define GSM_SND_GAIN_CTRL_NOTI					0x06
 
 /* --------------------------------------------------------------------------
-   GSM_SERVICEMODE : Service Mode functions
-   --------------------------------------------------------------------------*/
+GSM_SERVICEMODE : Service Mode functions
+--------------------------------------------------------------------------*/
 #define GSM_SVCMODE_ENTER_REQ				0x01
 #define GSM_SVCMODE_END_REQ					0x02
 #define GSM_SVCMODE_PROCESS_KEY_REQ			0x03
@@ -1421,8 +1420,8 @@
 //#define GSM_SVCMODE_SET_HW_SOUND_CONFIG_REQ	0x05
 
 /* --------------------------------------------------------------------------
-   GSM_SERVICEMODE : Notifications or Responses
-   --------------------------------------------------------------------------*/
+GSM_SERVICEMODE : Notifications or Responses
+--------------------------------------------------------------------------*/
 #define GSM_SVCMODE_ENTER_NOTI				0x01
 #define GSM_SVCMODE_END_NOTI					0x02
 #define GSM_SVCMODE_SCREEN_CONFIG_NOTI		0x03
