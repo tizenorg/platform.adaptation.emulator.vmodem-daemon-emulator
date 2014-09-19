@@ -957,6 +957,9 @@ static int client_callback(PhoneServer * ps, int fd, EloopCondition cond, void *
 
     switch (group)
     {
+        case GSM_RSSI:
+            server_tx_display_rssi_info_noti(0xff, action);
+            break;
         case GSM_CALL:
             change_state_machine( GSM_CALL_CMD );
             if( is_flight_mode() ){

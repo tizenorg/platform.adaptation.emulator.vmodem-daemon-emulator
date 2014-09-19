@@ -1,6 +1,6 @@
 #git:sdk/vmodem-daemon-emulator
 Name: vmodemd-emul
-Version: 0.2.53
+Version: 0.2.56
 Release: 1
 Summary: Virtual Modem
 Group: System/ModemEmulator

@@ -68,6 +68,7 @@
 #define GSM_POWER                             0x0F
 #define GSM_CLIENT		0x10
 #define RESTORE_EI_DATA						0x11
+#define GSM_RSSI                            0x13
 #define FUNC_EDB							0x12
 #define FUNC_EDB_IND						0x01
 #define FUNC_SINGLEDB_IND						0x02
