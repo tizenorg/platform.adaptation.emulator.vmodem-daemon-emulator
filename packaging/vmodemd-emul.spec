@@ -61,4 +61,5 @@ rm -f build
 /usr/lib/systemd/system/emulator.target.wants/vmodem-x86.service
 /usr/lib/systemd/system/vmodem-x86.service
 /usr/share/license/%{name}
+%manifest packaging/vmodemd-emul.manifest
 
