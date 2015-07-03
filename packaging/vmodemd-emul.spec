@@ -5,7 +5,7 @@ Release: 1
 Summary: Virtual Modem
 Group: System/ModemEmulator
 License: GNU
-ExclusiveArch: %{ix86}
+ExclusiveArch: %{ix86} x86_64
 Source0: %{name}-%{version}.tar.gz
 Source1001: packaging/vmodemd-emul.manifest
 BuildRequires: pkgconfig(glib-2.0)
