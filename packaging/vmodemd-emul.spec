@@ -4,7 +4,7 @@ Version: 0.2.56
 Release: 1
 Summary: Virtual Modem
 Group: System/ModemEmulator
-License: GNU
+License: GPL-2.0+
 ExclusiveArch: %{ix86} x86_64
 Source0: %{name}-%{version}.tar.gz
 Source1001: packaging/vmodemd-emul.manifest
