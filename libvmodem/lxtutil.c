@@ -134,7 +134,7 @@ void lxt_util_rawdataPrint(void *rawdata, int rawdatasize, const char *title)
 	return;
     }
 
-    printf(title);
+    printf("%s", title);
 
     // save pointer
     p = (unsigned char *)rawdata;

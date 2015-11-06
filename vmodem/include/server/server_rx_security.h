@@ -29,6 +29,8 @@
 #ifndef _SERVER_RX_SECURITY_H_
 #define _SERVER_RX_SECURITY_H_
 
+int server_rx_sim_sec_check_password_req(void* ptr_data, int data_len);
+
 int server_rx_sim_sec_get_imsi_req(void* ptr_data, int data_len);
 
 int server_rx_sim_sec_set_pin_status_req(void* ptr_data, int data_len);

@@ -28,6 +28,7 @@
 
 #ifndef	_SERVER_COMMON_CALL_H_
 #define _SERVER_COMMON_CALL_H_
+#include <stdbool.h>
 #include "vgsm_call.h"
 #include "vgsm_ss.h"
 #include "at_recv.h"
@@ -39,6 +40,8 @@ void clear_call_list(void);
 void get_call_list( gsm_call_list_t *list );
 int release_all_held_call(void);
 int release_all_active_call(void);
+int release_incoming_call(void);
+int active_waiting_or_held_call(bool onWaiting);
 int drop_call( int call_id );
 int is_prev_ss_state(ss_hold_act_state_e_type prev_state);
 void set_ss_state(ss_hold_act_state_e_type state);

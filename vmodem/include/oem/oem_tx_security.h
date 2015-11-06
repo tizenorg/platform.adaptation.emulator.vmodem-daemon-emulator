@@ -29,6 +29,7 @@
 #ifndef	_OEM_TX_SECURITY_H_
 #define	_OEM_TX_SECURITY_H_
 
+int oem_tx_sim_sec_check_password_res(void* ptr_data);
 
 int oem_tx_sim_sec_get_imsi_res(void* ptr_data, int data_len);
 

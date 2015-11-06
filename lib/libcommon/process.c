@@ -260,10 +260,18 @@ int write_pidfile(const char *filename)
     }
 
     /* clear old contents */
-    ftruncate(fd, 0);
+    if (ftruncate(fd, 0) < 0) {
+        log_msg(MSGL_ERROR, "%s at %s(%d)\n", strerror(errno), __FILE__, __LINE__);
+        close(fd);
+        return -1;
+    }
     memset(buf, 0, sizeof(buf));
     sprintf(buf, "%d", (int)getpid());
-    write(fd, buf, strlen(buf));
+    if (write(fd, buf, strlen(buf)) < 0) {
+        log_msg(MSGL_ERROR, "%s at %s(%d)\n", strerror(errno), __FILE__, __LINE__);
+        close(fd);
+        return -1;
+    }
 
 #ifndef _WIN32
     chmod(pidfname, S_IRWXU | S_IRWXG | S_IRWXO);
