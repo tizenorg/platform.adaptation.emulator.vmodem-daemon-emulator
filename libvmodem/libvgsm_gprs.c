@@ -77,5 +77,5 @@ int vgsm_gprs_ip_configuration(LXT_HANDLE* handle, gsm_GprsConfList list)
     if (pdata)
 	free(pdata);
 
-    return 0;
+    return (nretn < 0 ? nretn : 0);
 }

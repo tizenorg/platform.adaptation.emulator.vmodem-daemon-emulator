@@ -348,5 +348,13 @@ void SmsUtilEncodeDCS( BYTE* pDCS, TapiNetTextCodingScheme* pCodingScheme);
 
 UINT8 SmsUtilEncodeValidity( BYTE* pValidity, TapiNetTextVP* pVP );
 
+char* SmsUtilUnpackGSM8Code( char* szData, const BYTE* pIn, int in_len );
+int SmsUtilpackGSM8Code( BYTE* pOut, const char* szData, int in_len );
+void SmsUtilDecodeAddrField_sca(char *diallingNum, unsigned char* pAddrField, int *result_ton, int *result_npi );
+void SmsUtilDecodeAddrField_dst(char *diallingNum, unsigned char* pAddrField, int *result_ton, int *result_npi );
+int SmsReadSMSCfromSIM(unsigned char* pAddrFiled);
+int SmsUtilEncodeAddrField_sca(unsigned char* pAddrField, unsigned char* diallingNum, int dialnumLen, int ton, int npi);
+int SmsUtilEncodeAddrField_dst(unsigned char* pAddrField, unsigned char* diallingNum, int dialnumLen, int ton, int npi );
+
 #endif /* _SMS_UTIL_H_ */
 

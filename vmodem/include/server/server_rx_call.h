@@ -39,6 +39,7 @@ int server_rx_call_release_exec(void);
 /* APIs for ss_manage_call */
 int server_rx_call_release_all_held(void);
 int server_rx_call_release_all_active(void);
+int server_rx_call_release_incoming(void);
 int server_rx_call_release_single(int call_id);
 int server_rx_call_swap(void);
 int server_rx_call_split_conf(int call_id);
