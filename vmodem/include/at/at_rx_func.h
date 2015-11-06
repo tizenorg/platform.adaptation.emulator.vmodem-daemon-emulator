@@ -43,6 +43,7 @@
 
 /////////////////////////////////////////////////////////////////////
 int RxPWR_DefaultPower(char* atmsg);
+int at_RxPWR_DefaultPower(char* atmsg);
 int at_rx_power_up_exec(char* atmsg);
 int at_rx_online_exec(char* atmsg);
 

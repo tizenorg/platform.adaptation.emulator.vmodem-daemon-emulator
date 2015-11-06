@@ -247,6 +247,9 @@ typedef enum{
 
 /********************************* Functions ****************************************/
 char *readline(void);
+char* read_cmd_line(void);
+char* find_new_line(char* ptr, bool sms);
+
 void prv_byte_to_char(unsigned char aByte, char* hexaCharP);
 void prv_bytes_to_hexadecimal_string(unsigned char* bytesP, int bytesSize, char* hexaStringP, int* hexaStringSize);
 

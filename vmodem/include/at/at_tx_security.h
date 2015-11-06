@@ -31,6 +31,8 @@
 
 #include "logmsg.h"
 
+int at_tx_sim_sec_check_password_res(void* ptr_data);
+
 int at_tx_sim_sec_get_imsi_res(void* ptr_data, int data_len);
 
 int at_tx_sim_sec_set_pin_status_res(int error);

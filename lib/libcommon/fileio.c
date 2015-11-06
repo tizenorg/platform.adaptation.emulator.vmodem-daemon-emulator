@@ -386,7 +386,6 @@ char *find_exec_path_by_bash_profile(char *target_path)
 char *find_ld_path(char *line) {
     int loc;
     char *ldpath = NULL;
-    char *start_p = NULL;
     int find_loc = 0;
 
     ldpath = strstr(line, "LD_LIBRARY_PATH");
@@ -407,7 +406,6 @@ char *find_ld_path(char *line) {
 	    return NULL;
 	}
 	if (ldpath[loc] == '=') {
-	    start_p = &ldpath[loc];
 	    break;
 	}
     }

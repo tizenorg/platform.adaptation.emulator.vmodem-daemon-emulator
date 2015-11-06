@@ -62,5 +62,15 @@ void clear_callbarring_pwd_fail_count(void);
 //090225
 int  vgsm_ss_sqlite_cw_check_exist (int);
 
+int get_incoming_video_call_barring_state(void);
+int get_outgoing_video_call_barring_state(void);
+int get_incoming_voice_call_barring_state(void);
+int get_outgoing_voice_call_barring_state(void);
+int send_call_barring_entry(call_barring_entry_t* entry);
+void set_incoming_video_call_barring_state(int state);
+void set_outgoing_video_call_barring_state(int state);
+void set_incoming_voice_call_barring_state(int state);
+void set_outgoing_voice_call_barring_state(int state);
+
 #endif
 

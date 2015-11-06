@@ -34,6 +34,7 @@
 #include <time.h>
 
 #include "sms_util.h"
+#include "sms_tool.h"
 
 
 
@@ -187,7 +188,7 @@ int MsgConvertGSM7bitToUCS2(unsigned char *pDestText, int maxLength, const unsig
 	    i++;
 	    ucs2Buf[0] = (g_GSM7BitToUCS2TableExt[ pSrcText[i] ] & 0xFF00) >> 8;
 	    ucs2Buf[1] = g_GSM7BitToUCS2TableExt[ pSrcText[i] ] & 0x00FF;
-	    MsgConvertUCS2toUTF8(&utf8Buf, 256, ucs2Buf, 2);
+	    MsgConvertUCS2toUTF8(utf8Buf, 256, ucs2Buf, 2);
 	    pDestText[outTextLen++] = utf8Buf[0];
 	}
 	else
@@ -200,7 +201,7 @@ int MsgConvertGSM7bitToUCS2(unsigned char *pDestText, int maxLength, const unsig
 		fprintf(stderr, "upperByte is not 0x00\n");
 		ucs2Buf[0] = upperByte;
 		ucs2Buf[1] = lowerByte;
-		MsgConvertUCS2toUTF8(&utf8Buf, 256, ucs2Buf, 2);
+		MsgConvertUCS2toUTF8(utf8Buf, 256, ucs2Buf, 2);
 		pDestText[outTextLen++] = utf8Buf[0];
 		pDestText[outTextLen++] = utf8Buf[1];
 		fprintf(stderr,"upperByte:%x, lowerByte:%x\n", upperByte, lowerByte);
@@ -361,7 +362,6 @@ byte length of converted UCS2 characters
  */
 int MsgConvertUTF8toUCS2(unsigned char *pDestText, int maxLength, const unsigned char *pSrcText, int srcTextLen)
 {
-    int i, j;
     int textLen;	
     unsigned char *unicodeTemp = (unsigned char*)pDestText;
     int ucs2Length = 0;
@@ -372,8 +372,6 @@ int MsgConvertUTF8toUCS2(unsigned char *pDestText, int maxLength, const unsigned
     const unsigned char * pTempSrcText = pSrcText;
     const unsigned char * pTempDestText = pDestText;
 #endif
-
-    i = j = 0;	
 
     if(maxLength == 0 || pSrcText == NULL || pDestText ==  NULL)
     {
@@ -399,7 +397,12 @@ int MsgConvertUTF8toUCS2(unsigned char *pDestText, int maxLength, const unsigned
 
     if (cd > 0)
     {
-	err = g_iconv(cd, (char**)&pSrcText, (gsize*)&textLen, (char**)&unicodeTemp, (gsize*)&remainedBuffer);
+        err = g_iconv(cd, (char**)&pSrcText, (gsize*)&textLen, (char**)&unicodeTemp, (gsize*)&remainedBuffer);
+        if (err < 0) {
+            fprintf(stderr, "g_iconv has failed\n");
+            g_iconv_close(cd);
+            return err;
+        }
     }
 
     ucs2Length = maxLength - remainedBuffer;
@@ -428,7 +431,6 @@ byte length of converted UTF8 characters
  */
 int MsgConvertUCS2toUTF8(unsigned char *pDestText, int maxLength, const unsigned char *pSrcText,  int srcTextLen)
 {
-    int i , j ;
     int remainedBuffer = maxLength;
     int utf8Length;
 
@@ -438,7 +440,6 @@ int MsgConvertUCS2toUTF8(unsigned char *pDestText, int maxLength, const unsigned
 #endif
     unsigned char * pTempDestText = pDestText;
 
-    i= j = 0;
     if(srcTextLen == 0 || pSrcText == NULL || pDestText ==  NULL || maxLength == 0)
     {
 	fprintf(stderr, "UCS2 to UTF8 Failed as text length is 0\n");
@@ -452,7 +453,12 @@ int MsgConvertUCS2toUTF8(unsigned char *pDestText, int maxLength, const unsigned
 
     if (cd > 0)
     {
-	err = g_iconv(cd, (char**)&pSrcText, (gsize*)&srcTextLen, (char**)&pDestText, (gsize*)&remainedBuffer);
+        err = g_iconv(cd, (char**)&pSrcText, (gsize*)&srcTextLen, (char**)&pDestText, (gsize*)&remainedBuffer);
+        if (err < 0) {
+            fprintf(stderr, "g_iconv has failed\n");
+            g_iconv_close(cd);
+            return err;
+        }
     }
 
     utf8Length = maxLength - remainedBuffer;
@@ -512,7 +518,8 @@ bytelength of UTF8 text
  */
 int MsgConvertGSM7bitToUTF8(unsigned char *pDestText, int maxLength,  const unsigned char *pSrcText, int srcTextLen)
 {
-    int utf8Length = 0;
+    // FIXME: I don't know why this function returns ucs2 instead of utf8. should check later.
+    //int utf8Length = 0;
     int ucs2Length = 0;
     int maxUCS2Length = srcTextLen;		// max # of UCS2 chars, NOT bytes. when all gsm7 chars are only one byte(-there is no extenstion), UCS2Length is maxUCS2 Length. otherwise(ex: gsm7 char starts with 0x1b) UCS2Length must be less than gsm7 legnth
     unsigned short pUCS2Text[maxUCS2Length];
@@ -661,7 +668,7 @@ BOOL EncodeSmsDeliverTpdu(SmsAddressInfo SCA, TPDU_SMS_DELIVER tpdu_deliver, cha
 	    size = strlen((char*)tpdu_deliver.userData);
 	    packet[index++] = size + 1;
 	    memset(tmp_buff, '\0', BUFF_SIZE);
-	    pos = MsgConvertUTF8ToGSM7bit ( tmp_buff, BUFF_SIZE, (char*)tpdu_deliver.userData, size);
+	    pos = MsgConvertUTF8ToGSM7bit ( tmp_buff, BUFF_SIZE, (unsigned char*)tpdu_deliver.userData, size);
 	    if(pos < 0) {
 		fprintf(stderr, "EncodeSmsDeliverTpdu: UTF8 to GSM7bit Failed as text length is 0\n");
 		*rawdata_len = index;
@@ -680,7 +687,7 @@ BOOL EncodeSmsDeliverTpdu(SmsAddressInfo SCA, TPDU_SMS_DELIVER tpdu_deliver, cha
 	    size = strlen((char*)tpdu_deliver.userData) * 2;
 	    packet[index++] = size; //one unicode has 2 bytes
 	    memset(tmp_buff, '\0', BUFF_SIZE);
-	    pos = MsgConvertUTF8toUCS2 ( tmp_buff, BUFF_SIZE, (char*)tpdu_deliver.userData, size );
+	    pos = MsgConvertUTF8toUCS2 ( tmp_buff, BUFF_SIZE, (unsigned char*)tpdu_deliver.userData, size );
 	    if(pos < 0) {
 		fprintf(stderr, "EncodeSmsDeliverTpdu: UTF8 to UCS2 Failed as text length is 0\n");
 		*rawdata_len = index;
@@ -863,7 +870,6 @@ int DecodeSmsSubmitTpdu(TPDU_SMS_SUBMIT *tpdu_submit, int pdu_len , char * pPDU,
 	case TAPI_NETTEXT_ALPHABET_DEFAULT:		
 	    //size = SmsUtilUnpackGSMCode((char *)tpdu_submit->userData, inData, (UINT8) tpdu_submit->udl);
 	    {
-		int i;
 		BYTE    tmpData[TAPI_NETTEXT_SMDATA_SIZE_MAX+1];
 		memset( tmpData, 0x00, TAPI_NETTEXT_SMDATA_SIZE_MAX + 1 );
 		memcpy( (void*) tmpData, (void*)(inData + udhl), tpdu_submit->udl - udhl);
@@ -878,7 +884,7 @@ int DecodeSmsSubmitTpdu(TPDU_SMS_SUBMIT *tpdu_submit, int pdu_len , char * pPDU,
 
 	    memset(tmp_buff, '\0', BUFF_SIZE);
 	    //MsgConvertGSM7bitToUTF8( tmp_buff, BUFF_SIZE, (char *)tpdu_submit->userData, size );
-	    MsgConvertGSM7bitToUTF8( tmp_buff, BUFF_SIZE, (char *)(tpdu_submit->userData + udhl), size );
+	    MsgConvertGSM7bitToUTF8( tmp_buff, BUFF_SIZE, (unsigned char *)(tpdu_submit->userData + udhl), size );
 	    memcpy(tpdu_submit->userData, inData, udhl);
 	    memcpy(tpdu_submit->userData + udhl, tmp_buff, size);
 	    break;	
@@ -889,7 +895,7 @@ int DecodeSmsSubmitTpdu(TPDU_SMS_SUBMIT *tpdu_submit, int pdu_len , char * pPDU,
 	    //size = SmsUtilUnpackUCS2Code((char *)tpdu_submit->userData, inData, (UINT8) tpdu_submit->udl);
 	    memcpy((void*)tpdu_submit->userData, (void*) inData, tpdu_submit->udl );
 	    memset(tmp_buff, '\0', BUFF_SIZE);
-	    MsgConvertUCS2toUTF8( tmp_buff, BUFF_SIZE, (char *)tpdu_submit->userData, (UINT8) tpdu_submit->udl );
+	    MsgConvertUCS2toUTF8( tmp_buff, BUFF_SIZE, (unsigned char *)tpdu_submit->userData, (UINT8) tpdu_submit->udl );
 	    //memcpy(tpdu_submit->userData, tmp_buff, size);
 	    break;
 	default:
@@ -1127,7 +1133,7 @@ BOOL EncodeCB_GSM(CELLBROADCASTING cb_msg, char *rawdata, int *rawdata_len)
 
     memset( tmp_buff, '\0', BUFF_SIZE);
     size = strlen((char*)cb_msg.message);
-    MsgConvertUTF8ToGSM7bit ( tmp_buff, BUFF_SIZE, (char *)cb_msg.message, size );
+    MsgConvertUTF8ToGSM7bit(tmp_buff, BUFF_SIZE, (unsigned char *)cb_msg.message, size);
     memcpy( cb_msg.message, tmp_buff, size );
     pos =SmsUtilPackGSMCode( packet + index, (char *)cb_msg.message, strlen((char *)cb_msg.message));
     index += pos;

@@ -50,5 +50,4 @@ int at_rx_sms_svc_option_set(char* atmsg);
 
 unsigned char* at_rx_sms_param_get(unsigned char* len);
 int at_rx_sms_param_set(char* atmsg);
-static void at_rx_sms_param_init(void);
 int sms_param_set_vconf(void);

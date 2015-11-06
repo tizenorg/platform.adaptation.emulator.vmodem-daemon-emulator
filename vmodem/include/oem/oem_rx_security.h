@@ -29,6 +29,7 @@
 #ifndef	_OEM_RX_SECURITY_H_
 #define	_OEM_RX_SECURITY_H_
 
+int oem_rx_sim_sec_check_password_req(void* ptr_data, int data_len);
 
 int oem_rx_sim_sec_get_imsi_req(void* ptr_data, int data_len);
 

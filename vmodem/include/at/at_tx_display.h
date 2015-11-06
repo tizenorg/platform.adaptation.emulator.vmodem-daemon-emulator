@@ -32,6 +32,7 @@
 
 int at_tx_display_icon_info_noti(void *data, int len);
 int at_tx_display_icon_info_resp(void *data, int len);
+int at_tx_display_rssi_info_noti(void *data, int len);
 
 #endif
 
