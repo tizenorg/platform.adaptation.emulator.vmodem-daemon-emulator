@@ -598,6 +598,7 @@ int server_rx_sim_sec_check_password_req(void* ptr_data, int data_len)
 
     recv_type = GSM_SEC_LOCK_TYPE_SC;
     lock_type = GSM_SIM_PIN2_REQ;
+    SIM_DEBUG("%02x\n", recv_type);
 
     result = server_sec_verify_password(password,lock_type,length_p);
     /* fail case    */

@@ -784,7 +784,9 @@ static void do_sms(PhoneServer * ps, TClientInfo * ci, LXT_MESSAGE * packet)
             if((int)p[0] == MMS_SEND_OK || (int)p[0] == MMS_SEND_FAIL){
                 sprintf(vconf_cmd, "vconftool set -t int memory/telephony/mms_sent_status %d -i -f", ((int)p[0] - MMS_MODIFIER));
                 TRACE(MSGL_VGSM_INFO, "system : %s\n", vconf_cmd);
-                system(vconf_cmd);
+                if (system(vconf_cmd) == -1) {
+                    TRACE(MSGL_WARN, "system(%s) has failed\n", vconf_cmd);
+                }
             } else {
                 smsSentStatus = (int)p[0];
             }
@@ -949,7 +951,7 @@ static int client_callback(PhoneServer * ps, int fd, EloopCondition cond, void *
     action = packet.action;
     length = packet.length;
 
-    TRACE(MSGL_VGSM_INFO, "in client_callback, group : %x\n", group);
+    TRACE(MSGL_VGSM_INFO, "in client_callback, group: %x, length: %d\n", group, length);
 
     if(vconf_get_int(VCONFKEY_TELEPHONY_RSSI, &rssi)) {
         TRACE(MSGL_WARN, "vconf_get_int(%s) fail\n", VCONFKEY_TELEPHONY_RSSI);

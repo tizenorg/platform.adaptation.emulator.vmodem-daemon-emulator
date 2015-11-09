@@ -135,6 +135,8 @@ int server_rx_net_reg_get(void)
  */
 static const unsigned char default_plmn[PLMN_SIZE] = { '1','1','1','1','1','#' };
 
+/* XXX: These functions are not used, now.
+ *      But should check why.
 static void find_plmn( unsigned char *plmn, unsigned char *act)
 {
     gsm_network_plmn_list_t *plmn_list = get_plmn_list();
@@ -154,6 +156,7 @@ static void find_plmn( unsigned char *plmn, unsigned char *act)
     *act = GSM_NET_ACT_UTRAN;
     memcpy(plmn, default_plmn, sizeof default_plmn);
 }
+*/
 
 int server_rx_net_current_plmn_get(void)
 {

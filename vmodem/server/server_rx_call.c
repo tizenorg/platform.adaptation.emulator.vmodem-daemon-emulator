@@ -68,6 +68,7 @@ int server_rx_call_answer_exec(void)
 
     /*   check general response error & call status error    */
     call_gen_resp_err = check_call_error();
+    TRACE(MSGL_VGSM_INFO, "call_gen_resp_err: %d\n", call_gen_resp_err);
 
     data[0] = 0x02; 		//The object is simulator,   0x01 : Outgoing Call, 0x02 : Answer Call, 0x03 : Release Call
 
@@ -95,7 +96,7 @@ int server_rx_call_originate_exec(void *ptr_data, int data_len )
     unsigned char clir_status;
     unsigned char num_len;
     unsigned char num_type;
-    const unsigned char *number;
+    char *number;
     unsigned char call_id;
     STATE next;
 
@@ -109,7 +110,7 @@ int server_rx_call_originate_exec(void *ptr_data, int data_len )
 
     ret = strtok(call_data+1, token);
     if(ret)
-	strcpy((char*)number, ret);
+	strcpy(number, ret);
 
     // DOCUMENTATION ERROR
     //
@@ -125,8 +126,9 @@ int server_rx_call_originate_exec(void *ptr_data, int data_len )
     assert(valid_call_type(call_type));
 
     clir_status = GSM_CALL_STATUS_DIALING;
-    num_len = strlen((char*)number);
+    num_len = strlen(number);
     num_type = GSM_NUM_TYPE_INTERNATIONAL;
+    TRACE(MSGL_VGSM_INFO, "num_type: %u\n", (unsigned int)num_type);
 
     assert(num_len <= MAX_GSM_DIALED_DIGITS_NUM);
 
@@ -175,7 +177,7 @@ int server_rx_call_originate_exec(void *ptr_data, int data_len )
 
     FuncServer->Cast(&GlobalPS, LXT_ID_CLIENT_EVENT_INJECTOR, &packet);
 
-    set_call_list( GSM_CALL_DIR_MO, GSM_CALL_STATUS_DIALING, call_type, (char*)number, num_len );
+    set_call_list( GSM_CALL_DIR_MO, GSM_CALL_STATUS_DIALING, call_type, number, num_len );
 
     callback_callist();
 
@@ -206,6 +208,7 @@ int server_rx_call_release_exec(void) // for all call release case. one call rel
 
     /* check general response error & call status error */
     call_gen_resp_err = check_call_error();
+    TRACE(MSGL_VGSM_INFO, "call_gen_resp_err: %d\n", call_gen_resp_err);
     server_tx_call_all_release();
     return 1;
 }

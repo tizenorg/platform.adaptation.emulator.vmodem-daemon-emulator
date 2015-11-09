@@ -76,6 +76,9 @@ int server_rx_ss_cw_get(int tel_class)
 	    , cw_entry->tel_class, cw_entry->ss_mode, ss_status);
 
     ret = oem_tx_ss_cw_resp(data, strlen(data));
+    if (ret < 0) {
+        log_msg(MSGL_WARN, "oem_tx_ss_cf_resp() has failed.\n");
+    }
 
     free(data);
     return 1;
@@ -90,6 +93,9 @@ int server_rx_ss_cb_get(int tel_class, int cb_type)
     log_msg(MSGL_VGSM_INFO,"tel_class = %d, cb_type = %d \n", tel_class, cb_type);
 
     cb_entry = find_call_barring_entry(tel_class, cb_type);
+    if (cb_entry == NULL) {
+        log_msg(MSGL_VGSM_INFO, "cb_entry is null.\n");
+    }
 
     return at_gen_resp_send(AT_GEN_ERR_NO_ERROR);
 }
@@ -122,6 +128,9 @@ int server_rx_ss_cf_get(int tel_class, int cf_type)
     strcat(sndbuf, CRLF);
 
     ret = oem_tx_ss_cf_resp(sndbuf, strlen(sndbuf));
+    if (ret < 0) {
+        log_msg(MSGL_WARN, "oem_tx_ss_cf_resp() has failed.\n");
+    }
 
     return 1;
 }
@@ -470,7 +479,7 @@ int server_rx_ss_cb_passwd_set(char* curr_passwd, char* new_passwd)
 	else
 	    gen_resp_err = SS_ERR_NEGATIVE_PW_CHECK; // NegativePasswordCheck
 
-	oem_tx_ss_gen_resp(gen_resp_err);
+	oem_tx_ss_gen_resp(AT_CME_ERR_INCORRECT_PWD);
 	return 1;
     }
 
@@ -481,7 +490,7 @@ int server_rx_ss_cb_passwd_set(char* curr_passwd, char* new_passwd)
     /* gen resp */
     set_ss_current_general_response_error( get_ss_general_response_error() );
     gen_resp_err = get_ss_current_general_response_error();
-    oem_tx_ss_gen_resp(gen_resp_err);
+    oem_tx_ss_gen_resp(AT_GEN_ERR_NO_ERROR);
     if(gen_resp_err != 0x8000)
     {
 	log_msg(MSGL_WARN,"gen_resp_err : %d \n", gen_resp_err);

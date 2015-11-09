@@ -237,7 +237,7 @@ gsm_network_reg_t *get_network_registration()
 
 void set_plmn_selection( gsm_net_sel_e_type mode, unsigned char plmn[], gsm_net_act_e_type act )
 {
-    int i = 0, find = 0;
+    int i = 0; //, find = 0; //XXX check why
 
     g_network_sel_mode = mode;
 
@@ -249,7 +249,7 @@ void set_plmn_selection( gsm_net_sel_e_type mode, unsigned char plmn[], gsm_net_
 	    if( memcmp( g_plmn_list.precord[i].plmn, plmn, 6 ) == 0 )
 	    {
 		g_plmn_list.precord[i].status = GSM_NET_PLMN_STATUS_CURRENT;
-		find = 1;
+		//find = 1;
 	    }
 	    else if( g_plmn_list.precord[i].status == GSM_NET_PLMN_STATUS_CURRENT )
 		g_plmn_list.precord[i].status = GSM_NET_PLMN_STATUS_AVAIL;

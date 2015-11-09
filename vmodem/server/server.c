@@ -58,7 +58,7 @@ typedef struct _msg_info {
     unsigned int cclisn;
 } msg_info;
 
-int q_vmodem_device_init()
+static int q_vmodem_device_init(void)
 {
     TRACE(MSGL_VGSM_INFO, "\n");
 
@@ -494,7 +494,7 @@ static void server_cast_missed_message(PhoneServer * ps, int klass, int clientfd
             }
 
             server->mmsg.mmsg_info[ii].klass = LXT_ID_CLIENT_RESERVED;
-            TRACE(MSGL_VGSM_INFO, "removed missed cast index: %d by client(0x%x)\n", ii, klass);
+            TRACE(MSGL_VGSM_INFO, "removed missed cast index: %d by client(0x%x), rc: %d\n", ii, klass, rc);
 
             // clear message
             TAPIMessageFree(&(server->mmsg.mmsg_info[ii].mmsg));
