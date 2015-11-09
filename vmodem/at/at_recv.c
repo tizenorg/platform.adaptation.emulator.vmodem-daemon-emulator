@@ -162,12 +162,14 @@ int at_recv_sms(char* cmd, char* atmsg)
     {
 	return at_rx_sms_deliver_report_exec(atmsg);
     }
+    /* XXX: Check why comment out.
     // return at_rx_sms_param_count_get(atmsg);
     // return at_rx_sms_param_set(atmsg);
     // return at_rx_sms_param_get(atmsg);
     // return at_rx_sms_svc_option_set(atmsg);
     // return at_rx_sms_mem_status_set(atmsg);
     // return at_rx_sms_cbconfig(atmsg);
+    */
 
     NOT_SUPPORTED_AT(atmsg);
     return 1;

@@ -42,8 +42,10 @@
 
 
 static unsigned char g_bmute;
+/* XXX
 static unsigned char g_audio_path = 1;
 static unsigned char g_clock_status; //0:Clock End, 1:Clock Start
+*/
 
 int at_rx_snd_mute_control_get(char* atmsg)
 {

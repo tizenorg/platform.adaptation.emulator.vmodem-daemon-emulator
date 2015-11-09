@@ -115,7 +115,7 @@ int at_rx_ss_cf_get(char* atmsg)
     ret = strtok(NULL, TOKEN);
     TRACE(MSGL_VGSM_INFO, "%s\n", ret);
     if(ret)
-	tel_class = atoi(ret);	
+        tel_class = atoi(ret);
 
     TRACE(MSGL_VGSM_INFO, "CCFC tel_class:%d\n", tel_class);
     oem_rx_ss_cf_get(tel_class, cf_type);
@@ -124,7 +124,7 @@ int at_rx_ss_cf_get(char* atmsg)
 
 int at_rx_ss_cf_set(char* atmsg)
 {
-    int	ss_mode, tel_class, type, replyTime, num_len, num_type, satype;
+    int	ss_mode, tel_class, type, replyTime, num_len, num_type;
     char number[MAX_GSM_DIALED_DIGITS_NUMBER], subaddr[MAX_GSM_DIALED_DIGITS_NUMBER];
     memset(subaddr, '\0', MAX_GSM_DIALED_DIGITS_NUMBER);
     char* tdata = strchr(atmsg, '=');
@@ -192,6 +192,7 @@ int at_rx_ss_cf_set(char* atmsg)
     }
 
     ret = strtok(NULL, TOKEN);
+    /* XXX: This doesn't be used now.
     if(ret)
     {
 	TRACE(MSGL_VGSM_INFO, "%s\n", ret);
@@ -199,6 +200,7 @@ int at_rx_ss_cf_set(char* atmsg)
     }
     else
 	satype = 128;	// default
+    */
 
     ret = strtok(NULL, TOKEN);
     if(ret)

@@ -320,13 +320,13 @@ static void prv_gsm_encode_dcs7(unsigned char* bufferP, int* bufferSize)
 static int prv_convert_utf8_text(VGSMApduEncoder* encoderP, VGSMApduFragment* fragmentP)
 {
     char*			dcsP = fragmentP->buffer.dataP;
-    unsigned char	destEncoding = VGSM_CHARSET_UTF8;
-    int			packed = 1;
     //	int			bufferSize=0;
     //	char*			bufferP=0;
     int		err = 0;
 
     /*
+    int			packed = 1;
+    unsigned char	destEncoding = VGSM_CHARSET_UTF8;
        switch(*dcsP)
        {
        case SAT_RESP_TYPE_YES_NO_OPTION:
@@ -384,12 +384,12 @@ static int prv_convert_utf8_text(VGSMApduEncoder* encoderP, VGSMApduFragment* fr
     if (packed)
     prv_gsm_encode_dcs7((unsigned char*)bufferP, &fragmentP->length);
     }
+    destEncoding = VGSM_CHARSET_UTF8;
+    packed = 0;
      */
 
     //temp..  only use UCS2BIT....
     *dcsP = VGSM_SMS_DCS_MODE_8BIT;
-    destEncoding = VGSM_CHARSET_UTF8;
-    packed = 0;
 
     //finalize:
     return err;
