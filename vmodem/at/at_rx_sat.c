@@ -86,13 +86,8 @@ int at_RxSAT_DefaultSAT(char* atmsg)
 
 int at_RxSAT_TerminalResponse(char* atmsg)
 {
-    unsigned char *p_rcv= 0;
-    unsigned char *tmp	= 0;
     LXT_MESSAGE packet;
     TAPIMessageInit(&packet);
-    char CmdId;
-    int data_size;
-    unsigned char *pdata = 0;
     TRACE(MSGL_VGSM_INFO, "unimplemented!\n");
     return 1;
 }
@@ -101,12 +96,9 @@ int at_RxSAT_TerminalResponse(char* atmsg)
 //RxSAT_TerminalResponse
 int at_RxSAT_EnvelopeResponse(char* atmsg)
 {
-    unsigned char *p_rcv_term = 0;
-    unsigned char *tmp = 0;
     LXT_MESSAGE packet;
     TAPIMessageInit(&packet);
 
-    unsigned char CmdId;
     TRACE(MSGL_VGSM_INFO, "unimplemented!\n");
     return 1;
 }

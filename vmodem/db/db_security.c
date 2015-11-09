@@ -460,7 +460,7 @@ int db_sim_info_add(int index, _SIMD_t *simd_t)
     char * mesg;
     char str[1000];
     char str1[1000];
-    int count, i;
+    int count = 0, i;
 
     unsigned char usim_li[33]=
     {   0x90, 0x00, 0x1e, 0x62, 0x1c, 0x82, 0x02, 0x41, 0x21, 0x83,
@@ -540,7 +540,7 @@ int db_sim_info_add(int index, _SIMD_t *simd_t)
 	}
     }
 
-    SIM_DEBUG("\n");
+    SIM_DEBUG("count = %d\n", count);
 
     char dbname[256];
     char *bin_path = get_bin_path();
@@ -663,6 +663,7 @@ int db_sim_info_add(int index, _SIMD_t *simd_t)
      */
 
     SIM_DEBUG("SQL statement : %s\n", str);
+    SIM_DEBUG("        count : %d\n", count);
 
     // add a row
     err = sqlite3_exec(db,str1,0,0,&mesg);
@@ -709,7 +710,7 @@ int db_sim_data_add(int index, _SIMD_t *simd_t)
     char * mesg;
     char str[1000];
     char str1[1000];
-    int count,i;
+    int count = 0,i;
 
     unsigned char iccid[13]  =
     { 0x90, 0x00, 0x0a, 0x98, 0x94, 0x22, 0x06, 0x45, 0x61, 0x53,
@@ -777,7 +778,7 @@ int db_sim_data_add(int index, _SIMD_t *simd_t)
 
     }
 
-    SIM_DEBUG("\n");
+    SIM_DEBUG("count = %d\n", count);
 
     char dbname[256];
 

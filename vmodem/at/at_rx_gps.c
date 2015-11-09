@@ -38,8 +38,10 @@
 #include "at_recv.h"
 #include "at_rx_gps.h"
 
+/* XXX
 static unsigned char g_gps_use_ssl;
 static unsigned char g_gps_agps_mode;
+*/
 
 int at_gps_rx_open(char* atmsg)
 {
@@ -70,12 +72,13 @@ int at_gps_xtra_set_xtra_enable(char* atmsg)
     return 1;
 }
 
+/* XXX
 static int at_gps_agps_set_ssl_get(char* atmsg)
 {
     unsigned char data[1];
     int n = 0;
 
-    /* build the response */
+    // build the response
     data[n++] = g_gps_use_ssl;
 
     //	return at_msg_send(ACK_SEQ_RESPONSE, data, n);
@@ -84,7 +87,7 @@ static int at_gps_agps_set_ssl_get(char* atmsg)
 
 static int at_gps_agps_set_ssl_set(char* atmsg)
 {
-    /*	const unsigned char *p = atmsg;
+	const unsigned char *p = atmsg;
 
 	if (strlen(atmsg) < 2)
 	TRACE(MSGL_WARN, "doc says this message should have 2 bytes\n");
@@ -94,17 +97,15 @@ static int at_gps_agps_set_ssl_set(char* atmsg)
 	TRACE(MSGL_VGSM_INFO, "use_ssl = %d\n", g_gps_use_ssl);
 
 	return at_gps_agps_set_ssl_get(atmsg);
-     */	return 1;
+	return 1;
 }
 
 int at_gps_agps_set_ssl(char* atmsg)
 {
-    /*
     // set
     return at_gps_agps_set_ssl_set(atmsg);
-    // get	
+    // get
     return at_gps_agps_set_ssl_get(atmsg);
-     */
     return 0;
 }
 
@@ -113,7 +114,7 @@ static int at_gps_agps_mode_get(char* atmsg)
     unsigned char data[1];
     int n = 0;
 
-    /* build the response */
+    // build the response
     data[n++] = g_gps_agps_mode;
 
     //	return at_msg_send(ACK_SEQ_RESPONSE, data, n);
@@ -132,11 +133,10 @@ static int at_gps_agps_mode_set(char* atmsg)
 
 int at_gps_agps_mode(char* atmsg)
 {
-    /*
     // set
     return at_gps_agps_mode_set(atmsg);
     // get
     return at_gps_agps_mode_get(atmsg);
-     */	
     return 0;
 }
+*/
