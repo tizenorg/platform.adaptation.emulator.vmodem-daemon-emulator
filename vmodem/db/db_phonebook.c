@@ -316,7 +316,7 @@ int db_sim_pb_add(PB *pb)
     if (bin_path)
 	g_free(bin_path);
 
-    SIM_DEBUG("name, strlen : %s, %d", pb->name,strlen(pb->name));
+    SIM_DEBUG("name, strlen : %s, %zu", pb->name,strlen(pb->name));
     db_sim_pb_get_check(pb);
 
     if(isdata == 1)
@@ -601,7 +601,7 @@ int db_sim_pb_remove(PB *pb)
 
     /////////////////////
     //090723
-    SIM_DEBUG("name, strlen : %s, %d", pb->name,strlen(pb->name));
+    SIM_DEBUG("name, strlen : %s, %zu", pb->name,strlen(pb->name));
     db_sim_pb_get_check(pb);
 
     if(isdata != 1)

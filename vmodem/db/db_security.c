@@ -1040,7 +1040,7 @@ int db_sim_sec_add(void)
     if (bin_path)
 	g_free(bin_path);
 
-    SIM_DEBUG("puk %s len %d\n\n\n", 	puk, strlen(puk));
+    SIM_DEBUG("puk %s len %zu\n\n\n", 	puk, strlen(puk));
 
     // open the database
     err = sqlite3_open(dbname,&db);

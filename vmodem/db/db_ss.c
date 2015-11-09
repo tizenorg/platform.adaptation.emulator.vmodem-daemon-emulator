@@ -95,7 +95,7 @@ static int vgsm_ss_sqlite_restore_callback(void * ref, int ncol, char ** cols, c
 		call_forwarding_entry_t		entry;
 		memset(entry.number, 0, sizeof(entry.number));
 
-		log_msg(MSGL_VGSM_INFO,"class = %d, type = %d, number = %s(%d), reply time = %d, ss_mode = %d \n", atoi(*cols), atoi(*(cols+1)), *(cols+2), strlen(*(cols+2)), atoi(*(cols+3)), atoi(*(cols+4)));
+		log_msg(MSGL_VGSM_INFO,"class = %d, type = %d, number = %s(%zu), reply time = %d, ss_mode = %d \n", atoi(*cols), atoi(*(cols+1)), *(cols+2), strlen(*(cols+2)), atoi(*(cols+3)), atoi(*(cols+4)));
 		entry.tel_class = atoi(*cols);
 		entry.type = atoi(*(cols+1));
 		memcpy(&entry.number, *(cols+2), strlen(*(cols+2)));

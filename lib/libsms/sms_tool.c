@@ -563,7 +563,7 @@ int MsgConvertUTF8ToGSM7bit(unsigned char *pDestText, int maxLength,  const unsi
     bzero(pUCS2Text, maxUCS2Length);
 
     fprintf(stderr, "srcTextLen = %d\n", srcTextLen);
-    fprintf(stderr, "temp buffer size = %d\n", maxUCS2Length * sizeof(unsigned short));
+    fprintf(stderr, "temp buffer size = %zu\n", (size_t)(maxUCS2Length * sizeof(unsigned short)));
     fprintf(stderr, "max dest Length = %d\n", maxLength);
 
     ucs2Length = MsgConvertUTF8toUCS2((unsigned char*)pUCS2Text, maxUCS2Length * sizeof(unsigned short), pSrcText, srcTextLen);

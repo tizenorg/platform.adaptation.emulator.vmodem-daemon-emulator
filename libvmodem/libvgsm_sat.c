@@ -57,7 +57,7 @@ int vgsm_proactive_cmd_send(LXT_HANDLE * handle,int command)
 	    GSM_SAT,
 	    GSM_SAT_PROACTIVE_COMMAND_SEND,
 	    1,
-	    (void *)command);
+	    (void *)(&command));
 }
 
 
