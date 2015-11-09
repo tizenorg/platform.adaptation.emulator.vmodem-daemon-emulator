@@ -5,7 +5,7 @@ INCLUDES =	\
 	-I../lib/libsms
 
 CFLAGS  = @CFLAGS@
-CFLAGS  += -Wall $(INCLUDES)  -DEMTRACE_I878 -D_LIBVGSM_DEBUG
+CFLAGS  += -Wall -Werror $(INCLUDES) -DEMTRACE_I878 -D_LIBVGSM_DEBUG
 
 LIBS    = -lpthread
 
