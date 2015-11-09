@@ -84,7 +84,7 @@ int server_tx_gprs_IPConfigurationNotify(LXT_MESSAGE const* packet)
 
     sprintf(sndbuf, "%s%d,%s,%s,%s,%d,%d%s", CGDCONT, g_pdpcontext.cid, pdp_type, g_pdpcontext.apn, g_pdpcontext.pdp_addr, g_pdpcontext.d_comp, g_pdpcontext.h_comp, CRLF);
 
-    log_msg(MSGL_VGSM_INFO,"packet:%s, length:%d\n", sndbuf, strlen(sndbuf));
+    log_msg(MSGL_VGSM_INFO,"packet:%s, length:%zu\n", sndbuf, strlen(sndbuf));
 
     return oem_tx_gprs_IPConfigurationNotify(sndbuf, strlen(sndbuf));
 }

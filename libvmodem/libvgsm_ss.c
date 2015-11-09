@@ -150,9 +150,9 @@ int vgsm_ss_setUSSD(LXT_HANDLE* handle, _USSD_data_t *ussd, int size)
     printf("time: %s, weather: %s\n",
 	    ussd->time, ussd->weather);
 
-    printf("data length : %d\n",sizeof(*ussd));
-    printf("time length : %d\n",sizeof(ussd->time));
-    printf("weather length : %d\n",sizeof(ussd->weather));
+    printf("data length : %zu\n",sizeof(*ussd));
+    printf("time length : %zu\n",sizeof(ussd->time));
+    printf("weather length : %zu\n",sizeof(ussd->weather));
     printf("size : %d\n", size);
 #endif
 
@@ -174,12 +174,12 @@ int vgsm_ss_setAOC(LXT_HANDLE* handle, _AOC_t *aoc, int size)
 	    aoc->acm, aoc->ccm, aoc->maxacm, aoc->ppu,
 	    aoc->chartype);
 
-    printf("data length : %d\n",sizeof(*aoc));
-    printf("acm length : %d\n",sizeof(aoc->acm));
-    printf("type length : %d\n",sizeof(aoc->ccm));
-    printf("type length : %d\n",sizeof(aoc->maxacm));
-    printf("type length : %d\n",sizeof(aoc->ppu));
-    printf("type length : %d\n",sizeof(aoc->chartype));
+    printf("data length : %zu\n",sizeof(*aoc));
+    printf("acm length : %zu\n",sizeof(aoc->acm));
+    printf("type length : %zu\n",sizeof(aoc->ccm));
+    printf("type length : %zu\n",sizeof(aoc->maxacm));
+    printf("type length : %zu\n",sizeof(aoc->ppu));
+    printf("type length : %zu\n",sizeof(aoc->chartype));
     printf("size : %d\n", size);
 #endif
 

@@ -113,7 +113,7 @@ int vgsm_network_nitz_information(LXT_HANDLE* handle, gsm_network_nitz_info_t re
 
     unsigned char * pdata = (unsigned char *) malloc(length);
 
-    printf("size of gsm_network_nitz_info_t : %d\n",sizeof(reg));
+    printf("size of gsm_network_nitz_info_t : %zu\n",sizeof(reg));
 
     if (!pdata)
 	return (-1);

@@ -26,6 +26,7 @@
  *
  */
 
+#include <stdint.h>
 #include "fileio.h"
 
 gchar *get_simulator_path(void)
@@ -299,12 +300,13 @@ char *search_target_name(char *directory_name)
 }
 
 char *find_exec_path(char *line) {
-    int loc;
-    int find_loc = 0;
+    uintptr_t loc;
+    uintptr_t find_loc = 0;
     char *ldpath = NULL;
     char *start_p = NULL;
     static char exec_path[512] = "";
     int nfound = 0;
+    size_t len;
 
 #if 0
     // ld path -> factoryfs of bash_profile
@@ -316,7 +318,7 @@ char *find_exec_path(char *line) {
 	return NULL;
     }
 
-    find_loc = (int)ldpath - (int)line;
+    find_loc = (uintptr_t)ldpath - (uintptr_t)line;
 
     for (loc = 0; loc < find_loc;loc++) {
 	if (line[loc] == '#') {
@@ -324,13 +326,13 @@ char *find_exec_path(char *line) {
 	}
     }
 
-    for (loc = 0; loc < strlen(ldpath);loc++) {
+    for (len = 0; len < strlen(ldpath);len++) {
 
-	if (ldpath[loc] == '#') {
+	if (ldpath[len] == '#') {
 	    return NULL;
 	}
-	if (ldpath[loc] == '=') {
-	    start_p = &ldpath[loc];
+	if (ldpath[len] == '=') {
+	    start_p = &ldpath[len];
 	    nfound = 1;
 	    break;
 	}
@@ -384,16 +386,17 @@ char *find_exec_path_by_bash_profile(char *target_path)
 
 
 char *find_ld_path(char *line) {
-    int loc;
+    uintptr_t loc;
     char *ldpath = NULL;
-    int find_loc = 0;
+    uintptr_t find_loc = 0;
+    size_t len;
 
     ldpath = strstr(line, "LD_LIBRARY_PATH");
     if (ldpath == NULL) {
 	return NULL;
     }
 
-    find_loc = (int)ldpath - (int)line;
+    find_loc = (uintptr_t)ldpath - (uintptr_t)line;
 
     for (loc = 0; loc < find_loc;loc++) {
 	if (line[loc] == '#') {
@@ -401,16 +404,16 @@ char *find_ld_path(char *line) {
 	}
     }
 
-    for (loc = 0; loc < strlen(ldpath);loc++) {
-	if (ldpath[loc] == '#') {
+    for (len = 0; len < strlen(ldpath);len++) {
+	if (ldpath[len] == '#') {
 	    return NULL;
 	}
-	if (ldpath[loc] == '=') {
+	if (ldpath[len] == '=') {
 	    break;
 	}
     }
 
-    return &ldpath[loc] + 1;
+    return &ldpath[len] + 1;
 }
 
 char *find_ld_path_by_bash_profile(char *target_path)

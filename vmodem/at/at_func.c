@@ -157,7 +157,7 @@ char* read_cmd_line(void)
 		sms_data_len = start_pduIndex + total_data_length;
 
 		TRACE(MSGL_VGSM_INFO, "sca_length:%d, total_data_length: %d, cnt: %d\n", sca_length, total_data_length, cnt);
-		TRACE(MSGL_VGSM_INFO, "(strlen(ATCMGS) + strlen(length) + strlen(token)): %d, sms_data_len:%d\n", (strlen(ATCMGS) + strlen(length) + strlen(token)), sms_data_len);
+		TRACE(MSGL_VGSM_INFO, "(strlen(ATCMGS) + strlen(length) + strlen(token)): %zu, sms_data_len:%d\n", (strlen(ATCMGS) + strlen(length) + strlen(token)), sms_data_len);
 
 		while(cnt < sms_data_len + 1)
 		{
@@ -222,7 +222,7 @@ int GSM_ATDispatchDpramData(GSM_StateMachine* pstate)
 	    return -1;
 	}
     }
-    TRACE(MSGL_VGSM_INFO, "atmsg length: %d\n", strlen(atmsg));	
+    TRACE(MSGL_VGSM_INFO, "atmsg length: %zu\n", strlen(atmsg));
 
     // set default value
     frame.m_StartMagicCode = 0x7F;
