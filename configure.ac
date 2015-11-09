@@ -13,7 +13,7 @@ then
 	AC_MSG_ERROR([pkg-config not present, please install])
 fi
 
-CFLAGS="${CFLAGS} -Wall"
+CFLAGS="${CFLAGS} -Wall -Werror"
 
 AC_SUBST(GLIB_CFLAGS)
 AC_SUBST(GLIB_LIBS)

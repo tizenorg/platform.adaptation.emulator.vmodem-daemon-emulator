@@ -1,16 +1,14 @@
 CC=@CC@
 AR=@AR@
-INCLUDES =	\
-	-I. \
+INCLUDES = -I. \
 	-I../lib/libsms
 
 CFLAGS  = @CFLAGS@
-CFLAGS  += -Wall $(INCLUDES)  -DEMTRACE_I878 -D_LIBVGSM_DEBUG
+CFLAGS  += -Wall -Werror $(INCLUDES) -DEMTRACE_I878 -D_LIBVGSM_DEBUG
 
 LIBS    = -lpthread
 
-OBJ =			\
-	lxtutil.o \
+OBJ =   lxtutil.o \
 	libvgsm_edb.o \
 	libvgsm_emul.o \
 	libvgsm_init.o \
