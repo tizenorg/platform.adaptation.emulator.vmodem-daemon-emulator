@@ -52,12 +52,15 @@ int sms_param_set_vconf();
 static unsigned char g_record_len = 0;
 static unsigned char g_record[PARAM_RECORD_LEN_MAX];
 
+/* XXX: These variables are not used, now.
+ *      But should check why.
 #define CB_MAX_SELECTED_IDS 0xff
-static unsigned char g_cb_enabled = 1;      /* enabled */
-static unsigned char g_cb_selected_id = 1;  /* all selected */
-static unsigned char g_cb_selected_count = 0;  /* number of selected ids */
+static unsigned char g_cb_enabled = 1; // enabled
+static unsigned char g_cb_selected_id = 1; // all selected
+static unsigned char g_cb_selected_count = 0; // number of selected ids
 static const unsigned char g_cb_max_selected_ids = CB_MAX_SELECTED_IDS;
-static unsigned short g_cb_selected_list[CB_MAX_SELECTED_IDS];  /* number of selected ids */
+static unsigned short g_cb_selected_list[CB_MAX_SELECTED_IDS]; // number of selected ids
+*/
 
 int at_rx_sms_SendMsg(char* atmsg)
 {
@@ -129,6 +132,8 @@ int at_rx_sms_DefaultSms(char* atmsg)
     return -1;
 }
 
+/* XXX: These functions are not used, now.
+ *      But should check why.
 static int at_rx_sms_cbconfig_get(char* atmsg)
 {
     return at_tx_sms_cbconfig_resp(g_cb_enabled, g_cb_selected_id
@@ -143,15 +148,14 @@ static int at_rx_sms_cbconfig_set(char* atmsg)
 
 int at_rx_sms_cbconfig(char* atmsg)
 {
-    /*
     // set
     at_rx_sms_cbconfig_set(atmsg);
 
     // get
     at_rx_sms_cbconfig_get(atmsg);
-     */
     return -1;
 }
+*/
 
 unsigned char at_g_sms_service_option= 0x02; // CS_ONLY
 
@@ -170,7 +174,7 @@ int at_rx_sms_mem_status_set(char* atmsg)
     return 1;
 }
 
-static void at_rx_sms_param_init()
+static void at_rx_sms_param_init(void)
 {
     int i, n = 0;
 

@@ -37,6 +37,7 @@
 #include "vgsm_sim.h"
 #include "at_func.h"
 #include "server_common.h"
+#include "at_rx_sms.h"
 
 int at_rx_sim_sec_imsi(char* atmsg)
 {
@@ -74,6 +75,8 @@ int at_rx_sim_sec_change_password(char* atmsg)
     return oem_rx_sim_sec_change_password_req(atmsg, strlen(atmsg));
 }
 
+/* XXX: These functions are not used, now.
+ *      But should check why.
 static int at_rx_sim_sec_set_phone_lock_req(void* ptr_data, int data_len)
 {
     unsigned char *p = ptr_data;
@@ -103,14 +106,13 @@ static int at_rx_sim_sec_set_phone_lock_req(void* ptr_data, int data_len)
 int at_rx_sim_sec_phone_lock(char* atmsg)
 {
     TRACE(MSGL_VGSM_SIM, "\n");
-    /*
     // get
     oem_rx_sim_sec_get_phone_lock_req(atmsg, strlen(atmsg));
     // set
     at_rx_sim_sec_set_phone_lock_req(atmsg, strlen(atmsg));
-     */
     return -1;
 }
+*/
 
 int at_rx_sim_sec_phone_lock_get(char* atmsg)
 {
@@ -124,7 +126,6 @@ int at_rx_sim_sec_phone_lock_get(char* atmsg)
 
     ret = strtok(data+1, TOKEN);
 
-    char token[] = "\"";
     ret = strtok(NULL, TOKEN);
     ret = strtok(NULL, TOKEN);
     TRACE(MSGL_VGSM_SIM, "input pw:%s, orig pw:%s\n", ret, origPwd);
@@ -579,7 +580,7 @@ static int at_rx_sim_sec_get_rsim_access_req(char* atmsg)
 
 	memset(hexaStringP, '\0', hexaStringSize);
 
-	prv_bytes_to_hexadecimal_string(ptr, len, hexaStringP, &hexaStringSize);
+	prv_bytes_to_hexadecimal_string((unsigned char*)ptr, len, hexaStringP, &hexaStringSize);
 
 	strcat((char*)&data[n], hexaStringP);
 

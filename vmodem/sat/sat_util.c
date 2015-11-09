@@ -827,7 +827,7 @@ static int cmd_select_item_callback(int request, char* bufferP, int* bufferSize,
 	    break;
 
 	case SAT_ALPHA_IDENTIFIER:
-	    *bufferSize = 4;
+	    *bufferSize = 12; // origin code has 4
 
 	    dataPP = (char**) bufferP;
 	    dataP = *dataPP = malloc(*bufferSize);
@@ -835,7 +835,7 @@ static int cmd_select_item_callback(int request, char* bufferP, int* bufferSize,
 	    TRACE(MSGL_VGSM_INFO, "alpha_id is <%s>",alpha_id);
 
 	    if (dataP)
-		memcpy(dataP, alpha_id,strlen(alpha_id));
+		memcpy(dataP, alpha_id, strlen(alpha_id));
 
 	    TRACE(MSGL_VGSM_INFO, "dataP is <%s>",dataP);
 

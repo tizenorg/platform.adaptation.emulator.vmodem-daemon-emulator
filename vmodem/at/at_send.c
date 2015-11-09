@@ -55,6 +55,7 @@ static unsigned char get_control_infoid(void)
     return s_infoid;
 }
 
+/* XXX
 static unsigned char get_msg_sequence(void)
 {
     TRACE(MSGL_VGSM_INFO, "\n");
@@ -66,14 +67,15 @@ static unsigned char get_msg_sequence(void)
 	s_msg_seq = 0;
     else
 	s_msg_seq++;
-    /***
+    / ***
       static unsigned char s_msg_seq = 0;
       if (s_msg_seq >= 255)
       s_msg_seq = 0;
       ++s_msg_seq;
-     ***/
+     *** /
     return s_msg_seq;
 }
+*/
 
 #define HDLC_FRAME_HEADER_SIZE 3
 #define MAX_HDLC_FRAME_SIZE 2048

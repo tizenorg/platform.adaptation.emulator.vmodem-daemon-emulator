@@ -26,6 +26,7 @@
  *
  */
 
+#include <stdio.h>
 #include <assert.h>
 
 #include "at_send.h"
@@ -34,7 +35,7 @@
 #include "at_tx_sms.h"
 #include "at_func.h"
 #include "phoneserver.h"
-#include <stdio.h>
+#include "misc.h"
 
 int at_tx_sms_deviceReady(void *data, int len)
 {
@@ -145,6 +146,8 @@ int at_tx_sms_deliver_report_noti(int result_status)
     return rc;
 }
 
+/* XXX: These functions are not used, now.
+ *      But should check why.
 int at_tx_sms_param_count_resp(unsigned char mem_store, unsigned char record_count)
 {
     unsigned char data[2];
@@ -159,6 +162,7 @@ int at_tx_sms_param_count_resp(unsigned char mem_store, unsigned char record_cou
     return 0;
     //	return at_msg_send(ACK_SEQ_RESPONSE, data, n);
 }
+*/
 
 int at_tx_sms_param_resp(unsigned char mem_store, unsigned char record_index, unsigned char record_len, unsigned char *record)
 {

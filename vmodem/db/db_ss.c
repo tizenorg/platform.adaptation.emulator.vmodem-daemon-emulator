@@ -41,6 +41,7 @@
 #include "fileio.h"
 //#include "state.h"
 #include "at_func.h"
+#include "oem_tx_ss.h"
 
 #define ALP_NOTIFY_DATABASE_DIR  "./db"
 #define ALP_NOTIFY_DATABASE_FILE "ss.db"
@@ -1139,6 +1140,9 @@ int send_call_barring_entry(call_barring_entry_t* entry)
     log_msg(MSGL_VGSM_INFO,"data[0] : %x\ndata[1] : %x\ndata[2] : %x\ndata[3] : %x\nss_mode : %x\n", data[0], data[1], data[2], data[3], entry->ss_mode);
 
     ret = oem_tx_ss_cb_resp(data, data_len);
+    if (ret < 0) {
+        log_msg(MSGL_WARN, "oem_tx_ss_cb_resp() failed.\n");
+    }
     free(data);
 
     return 0;
