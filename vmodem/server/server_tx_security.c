@@ -274,7 +274,7 @@ int server_tx_sim_sec_pin_status_noti(STATE_TYPE before_state, STATE_TYPE curren
     int data_size = 2;
     unsigned char *pdata = 0;
 
-    int send_sim_init_msg	=	0;
+    // int send_sim_init_msg	=	0;
 
     //	STATE current;
     //	STATE prev;
@@ -372,8 +372,8 @@ int server_tx_sim_sec_pin_status_noti(STATE_TYPE before_state, STATE_TYPE curren
 			{
 			    pdata[0]	=	GSM_SEC_SIM_INIT_COMPLETED;
 			    pdata[1]	=	GSM_SEC_LOCK_KEY_UNLOCKED;
-			    send_sim_init_msg	=	1;
 			    /*
+			    send_sim_init_msg	=	1;
 			       oem_tx_sim_sec_pin_status_noti(pdata, data_size);
 
 			       pdata[0]	=	GSM_SEC_PB_INIT_COMPLETED;

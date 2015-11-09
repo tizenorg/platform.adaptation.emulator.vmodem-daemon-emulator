@@ -33,6 +33,7 @@
 #include <string.h>
 #include <assert.h>
 
+#include "server_common.h"
 #include "phoneserver.h"
 #include "vgsm_phone.h"
 #include "linuxtapi.h"

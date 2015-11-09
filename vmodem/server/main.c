@@ -167,6 +167,7 @@ int main(int argc, char *argv[])
     }
 
     phone_power = GSM_PhonePowerStatus();
+    TRACE(MSGL_VGSM_INFO, "Phone Power Status: %d\n", phone_power);
 
 #ifdef __arm__
     error = GSM_PhonePowerOn(1);

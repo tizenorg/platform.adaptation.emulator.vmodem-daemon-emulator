@@ -118,6 +118,9 @@ static void svr_svrmgr_write_state(LXT_PHONE_STATE stateBefore, LXT_PHONE_STATE 
     if(fd >=0)
     {
 	rc = write(fd, data, strlen(data));
+        if (rc < 0) {
+            TRACE(MSGL_WARN, "write() has failed.\n");
+        }
 	close(fd);
     }
 }

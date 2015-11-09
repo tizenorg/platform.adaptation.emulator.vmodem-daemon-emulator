@@ -161,7 +161,8 @@ int server_tx_call_status(void) // it means call state.
 
     unsigned char pdata[128];
     int at_stat = change_stat_for_at(callList->CallInfo[get_call_id()].stat);
-    TRACE(MSGL_VGSM_INFO, "call id:%d, orignal stat: %d, send stat: %d\n", get_call_id(), callList->CallInfo[get_call_id()].stat, at_stat);
+    TRACE(MSGL_VGSM_INFO, "call id:%d, orignal stat: %d, send stat: %d, call state: %d\n",
+         get_call_id(), callList->CallInfo[get_call_id()].stat, at_stat, call_state);
 
     if(strcmp(callList->CallInfo[get_call_id()].number, ""))
     {
@@ -188,7 +189,7 @@ int server_tx_call_list_noti(void)
 {
     _ENTER();
 
-    int i = 0, j = 0, ret = 0;
+    int i = 0, ret = 0;
     int CallCount = 0;
     int len = 0;
     unsigned char *data = NULL;
@@ -201,7 +202,6 @@ int server_tx_call_list_noti(void)
     len = 32 + (8+MAX_GSM_DIALED_DIGITS_NUMBER);
     data = malloc(len*2);
     log_msg(MSGL_VGSM_INFO,"CallCount %d\n", CallCount);
-    j = 1;
     for (i=0; i < MAX_CALL_COUNT; i++) {
 	if( callList->CallInfo[i].stat == GSM_CALL_STATUS_NONE )
 	    continue;
@@ -520,6 +520,7 @@ int server_tx_call_release_exec(LXT_MESSAGE * packet )
     {
 	// general error send
 	call_gen_resp_err = check_call_error();
+        log_msg(MSGL_VGSM_INFO,"call_gen_resp_err: %d\n", call_gen_resp_err);
 	//oem_tx_call_gen_resp(call_gen_resp_err);
 	set_general_response_error(0x8000);
     }
@@ -636,10 +637,11 @@ int server_tx_call_alert_ind(void *ptr_data, int data_len )
      */
 
     //send noti ( alert  )to Phone
-    unsigned short call_type = get_call_type();
+    int call_type = get_call_type();
     int i = 0;
     int dialing_id = -1;
 
+    TRACE(MSGL_VGSM_INFO, "call_type: %d\n", call_type);
     gsm_call_list_t * callList = malloc(sizeof(gsm_call_list_t));
 
     if(!callList) {
