@@ -42,7 +42,7 @@ mkdir -p %{buildroot}/etc/rc.d/rc3.d
 ln -s ../../init.d/vmodemd %{buildroot}/etc/rc.d/rc3.d/S03vmodemd
 
 mkdir -p %{buildroot}/usr/share/license
-cp LICENSE.GPLv2 %{buildroot}/usr/share/license/%{name}
+cp LICENSE.GPLv2+ %{buildroot}/usr/share/license/%{name}
 
 %clean
 make clean
